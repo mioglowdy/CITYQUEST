@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityquest.mapper.ProductMapper">
+    
+    <resultMap id="ProductResultMap" type="com.cityquest.entity.ProductInfo">
+        <id column="id" property="id"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="image" property="image"/>
+        <result column="points_price" property="pointsPrice"/>
+        <result column="stock" property="stock"/>
+        <result column="limit_per_user" property="limitPerUser"/>
+        <result column="status" property="status"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="category_name" property="categoryName"/>
+    </resultMap>
+    
+    <select id="selectById" parameterType="Integer" resultMap="ProductResultMap">
+        SELECT p.*, c.name AS category_name
+        FROM product_info p
+        LEFT JOIN product_category c ON p.category_id = c.id
+        WHERE p.id = #{id}
+    </select>
+    
+    <select id="selectList" resultMap="ProductResultMap">
+        SELECT p.*, c.name AS category_name
+        FROM product_info p
+        LEFT JOIN product_category c ON p.category_id = c.id
+        <where>
+            <if test="categoryId != null">AND p.category_id = #{categoryId}</if>
+            <if test="status != null">AND p.status = #{status}</if>
+            <if test="keyword != null and keyword != ''">
+                AND (p.name LIKE CONCAT('%', #{keyword}, '%')
+                     OR p.description LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+        </where>
+        ORDER BY p.create_time DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+    
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*) FROM product_info
+        <where>
+            <if test="categoryId != null">AND category_id = #{categoryId}</if>
+            <if test="status != null">AND status = #{status}</if>
+            <if test="keyword != null and keyword != ''">
+                AND (name LIKE CONCAT('%', #{keyword}, '%')
+                     OR description LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+        </where>
+    </select>
+    
+    <insert id="insert" parameterType="com.cityquest.entity.ProductInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO product_info (category_id, name, description, image, points_price, stock, limit_per_user, status, create_by, create_time, update_time)
+        VALUES (#{categoryId}, #{name}, #{description}, #{image}, #{pointsPrice}, #{stock}, #{limitPerUser}, #{status}, #{createBy}, #{createTime}, #{updateTime})
+    </insert>
+    
+    <update id="update" parameterType="com.cityquest.entity.ProductInfo">
+        UPDATE product_info
+        <set>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="image != null">image = #{image},</if>
+            <if test="pointsPrice != null">points_price = #{pointsPrice},</if>
+            <if test="stock != null">stock = #{stock},</if>
+            <if test="limitPerUser != null">limit_per_user = #{limitPerUser},</if>
+            <if test="status != null">status = #{status},</if>
+            update_time = #{updateTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM product_info WHERE id = #{id}
+    </delete>
+    
+    <update id="updateStock">
+        UPDATE product_info SET stock = stock - #{quantity} WHERE id = #{id} AND stock >= #{quantity}
+    </update>
+    
+    <select id="selectUserExchangeCount" resultType="Integer">
+        SELECT COALESCE(SUM(eoi.quantity), 0)
+        FROM exchange_order_item eoi
+        INNER JOIN exchange_order eo ON eoi.order_id = eo.id
+        WHERE eo.user_id = #{userId} AND eoi.product_id = #{productId}
+        AND eo.status IN (0, 1, 2) -- 待发货、已发货、已完成
+    </select>
+</mapper>
+

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityquest.mapper.FeedMapper">
+
+    <resultMap id="FeedResultMap" type="com.cityquest.entity.UserFeedInfo">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="content" property="content"/>
+        <result column="image_url" property="imageUrl"/>
+        <result column="task_id" property="taskId"/>
+        <result column="record_id" property="recordId"/>
+        <result column="is_public" property="isPublic"/>
+        <result column="like_count" property="likeCount"/>
+        <result column="comment_count" property="commentCount"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.cityquest.entity.UserFeedInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_feed_info (user_id, content, image_url, task_id, record_id, is_public, like_count, comment_count, create_time, update_time)
+        VALUES (#{userId}, #{content}, #{imageUrl}, #{taskId}, #{recordId}, #{isPublic}, #{likeCount}, #{commentCount}, NOW(), NOW())
+    </insert>
+
+    <select id="selectById" parameterType="Integer" resultMap="FeedResultMap">
+        SELECT * FROM user_feed_info WHERE id = #{id}
+    </select>
+
+    <select id="selectByUserId" resultMap="FeedResultMap">
+        SELECT * FROM user_feed_info
+        WHERE user_id = #{userId}
+        ORDER BY create_time DESC
+        LIMIT #{page}, #{pageSize}
+    </select>
+
+    <select id="selectPublicFeedList" resultMap="FeedResultMap">
+        SELECT * FROM user_feed_info
+        WHERE is_public = TRUE
+        ORDER BY create_time DESC
+        LIMIT #{page}, #{pageSize}
+    </select>
+
+    <select id="selectFriendFeedList" resultMap="FeedResultMap">
+        SELECT f.* FROM user_feed_info f
+        INNER JOIN friendship_info fs ON f.user_id = fs.followee_id
+        WHERE fs.follower_id = #{userId}
+        ORDER BY f.create_time DESC
+        LIMIT #{page}, #{pageSize}
+    </select>
+
+    <update id="updateLikeCount">
+        UPDATE user_feed_info
+        SET like_count = like_count + #{increment},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateCommentCount">
+        UPDATE user_feed_info
+        SET comment_count = comment_count + #{increment},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM user_feed_info WHERE id = #{id}
+    </delete>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*) FROM user_feed_info
+        <where>
+            <if test="userId != null">AND user_id = #{userId}</if>
+            <if test="isPublic != null">AND is_public = #{isPublic}</if>
+        </where>
+    </select>
+
+</mapper>
+

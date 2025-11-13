@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityquest.mapper.ChatSessionMapper">
+
+    <resultMap id="ChatSessionResultMap" type="com.cityquest.entity.ChatSession">
+        <id column="id" property="id"/>
+        <result column="user_a_id" property="userAId"/>
+        <result column="user_b_id" property="userBId"/>
+        <result column="last_message_id" property="lastMessageId"/>
+        <result column="last_message_preview" property="lastMessagePreview"/>
+        <result column="last_message_time" property="lastMessageTime"/>
+        <result column="unread_count_a" property="unreadCountA"/>
+        <result column="unread_count_b" property="unreadCountB"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="selectById" parameterType="long" resultMap="ChatSessionResultMap">
+        SELECT * FROM chat_session WHERE id = #{id}
+    </select>
+
+    <select id="selectByUsers" resultMap="ChatSessionResultMap">
+        SELECT * FROM chat_session
+        WHERE user_a_id = #{userAId}
+          AND user_b_id = #{userBId}
+    </select>
+
+    <select id="selectByUserId" resultMap="ChatSessionResultMap">
+        SELECT * FROM chat_session
+        WHERE user_a_id = #{userId}
+           OR user_b_id = #{userId}
+        ORDER BY COALESCE(last_message_time, create_time) DESC
+    </select>
+
+    <insert id="insert" parameterType="com.cityquest.entity.ChatSession">
+        INSERT INTO chat_session (
+            id,
+            user_a_id,
+            user_b_id,
+            last_message_id,
+            last_message_preview,
+            last_message_time,
+            unread_count_a,
+            unread_count_b,
+            create_time,
+            update_time
+        ) VALUES (
+            #{id},
+            #{userAId},
+            #{userBId},
+            #{lastMessageId},
+            #{lastMessagePreview},
+            #{lastMessageTime},
+            #{unreadCountA},
+            #{unreadCountB},
+            #{createTime},
+            #{updateTime}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.cityquest.entity.ChatSession">
+        UPDATE chat_session
+        <set>
+            <if test="lastMessageId != null">last_message_id = #{lastMessageId},</if>
+            <if test="lastMessagePreview != null">last_message_preview = #{lastMessagePreview},</if>
+            <if test="lastMessageTime != null">last_message_time = #{lastMessageTime},</if>
+            <if test="unreadCountA != null">unread_count_a = #{unreadCountA},</if>
+            <if test="unreadCountB != null">unread_count_b = #{unreadCountB},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateUnreadCount">
+        UPDATE chat_session
+        SET
+            unread_count_a = CASE WHEN user_a_id = #{userId} THEN #{unreadCount} ELSE unread_count_a END,
+            unread_count_b = CASE WHEN user_b_id = #{userId} THEN #{unreadCount} ELSE unread_count_b END,
+            update_time = NOW()
+        WHERE id = #{sessionId}
+    </update>
+
+    <update id="incrementUnreadCount">
+        UPDATE chat_session
+        SET
+            unread_count_a = CASE WHEN user_a_id = #{userId} THEN unread_count_a + 1 ELSE unread_count_a END,
+            unread_count_b = CASE WHEN user_b_id = #{userId} THEN unread_count_b + 1 ELSE unread_count_b END,
+            update_time = NOW()
+        WHERE id = #{sessionId}
+    </update>
+
+</mapper>
+

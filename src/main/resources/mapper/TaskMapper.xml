@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityquest.mapper.TaskMapper">
+    
+    <resultMap id="TaskResultMap" type="com.cityquest.entity.TaskInfo">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="longitude" property="longitude"/>
+        <result column="latitude" property="latitude"/>
+        <result column="address" property="address"/>
+        <result column="reward" property="reward"/>
+        <result column="type" property="type"/>
+        <result column="status" property="status"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="cover_image" property="coverImage"/>
+        <result column="completion_count" property="completionCount"/>
+    </resultMap>
+    
+    <select id="selectById" parameterType="Integer" resultMap="TaskResultMap">
+        SELECT 
+            t.*,
+            COALESCE((SELECT COUNT(DISTINCT r.id) FROM record_info r WHERE r.task_id = t.id AND r.audit_status = 1), 0) AS completion_count
+        FROM task_info t
+        WHERE t.id = #{id}
+    </select>
+    
+    <select id="selectList" resultMap="TaskResultMap">
+        SELECT 
+            t.id,
+            t.title,
+            t.description,
+            t.longitude,
+            t.latitude,
+            t.address,
+            t.reward,
+            t.type,
+            t.status,
+            t.create_by,
+            t.create_time,
+            t.update_time,
+            t.cover_image,
+            COALESCE(COUNT(DISTINCT r.id), 0) AS completion_count
+        FROM task_info t
+        LEFT JOIN record_info r ON t.id = r.task_id AND r.audit_status = 1
+        <where>
+            <if test="type != null">AND t.type = #{type}</if>
+            <if test="status != null">AND t.status = #{status}</if>
+            <if test="keyword != null and keyword != ''">
+                AND (
+                    t.title LIKE CONCAT('%', #{keyword}, '%')
+                    OR t.description LIKE CONCAT('%', #{keyword}, '%')
+                    OR t.address LIKE CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+        </where>
+        GROUP BY t.id, t.title, t.description, t.longitude, t.latitude, t.address, t.reward, t.type, t.status, t.create_by, t.create_time, t.update_time, t.cover_image
+        ORDER BY t.create_time DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+    
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*) FROM task_info
+        <where>
+            <if test="type != null">AND type = #{type}</if>
+            <if test="status != null">AND status = #{status}</if>
+            <if test="keyword != null and keyword != ''">
+                AND (
+                    title LIKE CONCAT('%', #{keyword}, '%')
+                    OR description LIKE CONCAT('%', #{keyword}, '%')
+                    OR address LIKE CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+        </where>
+    </select>
+    
+    <insert id="insert" parameterType="com.cityquest.entity.TaskInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO task_info (title, description, longitude, latitude, address, reward, type, status, create_by, create_time, update_time, cover_image, completion_count)
+        VALUES (#{title}, #{description}, #{longitude}, #{latitude}, #{address}, #{reward}, #{type}, #{status}, #{createBy}, #{createTime}, #{updateTime}, #{coverImage}, #{completionCount})
+    </insert>
+    
+    <update id="update" parameterType="com.cityquest.entity.TaskInfo">
+        UPDATE task_info
+        <set>
+            <if test="title != null">title = #{title},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="longitude != null">longitude = #{longitude},</if>
+            <if test="latitude != null">latitude = #{latitude},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="reward != null">reward = #{reward},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="coverImage != null">cover_image = #{coverImage},</if>
+            update_time = #{updateTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM task_info WHERE id = #{id}
+    </delete>
+    
+    <update id="updateCompletionCount">
+        UPDATE task_info SET completion_count = completion_count + 1 WHERE id = #{id}
+    </update>
+    
+    <select id="selectNearbyTasks" resultMap="TaskResultMap">
+        SELECT 
+            t.id,
+            t.title,
+            t.description,
+            t.longitude,
+            t.latitude,
+            t.address,
+            t.reward,
+            t.type,
+            t.status,
+            t.create_by,
+            t.create_time,
+            t.update_time,
+            t.cover_image,
+            COALESCE(COUNT(DISTINCT r.id), 0) AS completion_count
+        FROM task_info t
+        LEFT JOIN record_info r ON t.id = r.task_id AND r.audit_status = 1
+        WHERE t.status = 1
+        GROUP BY t.id, t.title, t.description, t.longitude, t.latitude, t.address, t.reward, t.type, t.status, t.create_by, t.create_time, t.update_time, t.cover_image
+        ORDER BY 
+            (POW((t.longitude - #{longitude}) * 111.320 * COS(t.latitude * 3.1415926 / 180), 2) + 
+             POW((t.latitude - #{latitude}) * 110.574, 2)) ASC
+        LIMIT 20
+    </select>
+</mapper>

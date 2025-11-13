@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityquest.mapper.NotificationMapper">
+
+    <resultMap id="NotificationResultMap" type="com.cityquest.entity.NotificationInfo">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="type" property="type"/>
+        <result column="title" property="title"/>
+        <result column="message" property="message"/>
+        <result column="related_id" property="relatedId"/>
+        <result column="read_status" property="readStatus"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.cityquest.entity.NotificationInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO notification_info (user_id, type, title, message, related_id, read_status, create_time)
+        VALUES (#{userId}, #{type}, #{title}, #{message}, #{relatedId}, #{readStatus}, NOW())
+    </insert>
+
+    <select id="selectById" parameterType="Integer" resultMap="NotificationResultMap">
+        SELECT * FROM notification_info WHERE id = #{id}
+    </select>
+
+    <select id="selectByUserId" resultMap="NotificationResultMap">
+        SELECT * FROM notification_info
+        WHERE user_id = #{userId}
+        ORDER BY create_time DESC
+        LIMIT #{page}, #{pageSize}
+    </select>
+
+    <update id="markAsRead" parameterType="Integer">
+        UPDATE notification_info
+        SET read_status = TRUE
+        WHERE id = #{id}
+    </update>
+
+    <update id="markAllAsRead">
+        UPDATE notification_info
+        SET read_status = TRUE
+        WHERE user_id = #{userId} AND read_status = FALSE
+    </update>
+
+    <select id="selectUnreadCount" resultType="Integer">
+        SELECT COUNT(*) FROM notification_info
+        WHERE user_id = #{userId} AND read_status = FALSE
+    </select>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM notification_info WHERE id = #{id}
+    </delete>
+
+</mapper>
+

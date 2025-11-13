@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityquest.mapper.UserMapper">
+    
+    <resultMap id="UserResultMap" type="com.cityquest.entity.UserInfo">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="avatar" property="avatar"/>
+        <result column="points" property="points"/>
+        <result column="role" property="role"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    
+    <select id="selectByUsername" parameterType="String" resultMap="UserResultMap">
+        SELECT * FROM user_info WHERE username = #{username}
+    </select>
+    
+    <select id="selectById" parameterType="Long" resultMap="UserResultMap">
+        SELECT * FROM user_info WHERE id = #{id}
+    </select>
+    
+    <insert id="insert" parameterType="com.cityquest.entity.UserInfo" useGeneratedKeys="false">
+        INSERT INTO user_info (id, username, password, nickname, avatar, points, role, email, phone, status, create_time, update_time)
+        VALUES (#{id}, #{username}, #{password}, #{nickname}, #{avatar}, #{points}, #{role}, #{email}, #{phone}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    
+    
+    <update id="update" parameterType="com.cityquest.entity.UserInfo">
+        UPDATE user_info
+        <set>
+            <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="status != null">status = #{status},</if>
+            update_time = #{updateTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+    
+    <update id="updatePoints">
+        UPDATE user_info SET points = points + #{points} WHERE id = #{userId}
+    </update>
+    
+    <select id="selectRankList" parameterType="Integer" resultMap="UserResultMap">
+        SELECT * FROM user_info ORDER BY points DESC LIMIT #{limit}
+    </select>
+    
+    <select id="selectList" resultMap="UserResultMap">
+        SELECT * FROM user_info
+        <where>
+            <if test="keyword != null and keyword != ''">
+                (username LIKE CONCAT('%', #{keyword}, '%')
+                 OR nickname LIKE CONCAT('%', #{keyword}, '%')
+                 OR email LIKE CONCAT('%', #{keyword}, '%')
+                 OR phone LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="role != null and role != ''">
+                AND role = #{role}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+    
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*) FROM user_info
+        <where>
+            <if test="keyword != null and keyword != ''">
+                (username LIKE CONCAT('%', #{keyword}, '%')
+                 OR nickname LIKE CONCAT('%', #{keyword}, '%')
+                 OR email LIKE CONCAT('%', #{keyword}, '%')
+                 OR phone LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="role != null and role != ''">
+                AND role = #{role}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+    </select>
+    
+    <delete id="delete" parameterType="Long">
+        DELETE FROM user_info WHERE id = #{id}
+    </delete>
+    
+    <update id="updatePassword">
+        UPDATE user_info SET password = #{password}, update_time = NOW() WHERE id = #{id}
+    </update>
+</mapper>

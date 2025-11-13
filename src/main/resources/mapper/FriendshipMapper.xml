@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityquest.mapper.FriendshipMapper">
+
+    <resultMap id="FriendshipResultMap" type="com.cityquest.entity.FriendshipInfo">
+        <id column="id" property="id"/>
+        <result column="follower_id" property="followerId"/>
+        <result column="followee_id" property="followeeId"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.cityquest.entity.FriendshipInfo">
+        INSERT INTO friendship_info (follower_id, followee_id, create_time)
+        VALUES (#{followerId}, #{followeeId}, NOW())
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM friendship_info
+        WHERE follower_id = #{followerId} AND followee_id = #{followeeId}
+    </delete>
+
+    <select id="checkFollow" resultType="Integer">
+        SELECT COUNT(*) FROM friendship_info
+        WHERE follower_id = #{followerId} AND followee_id = #{followeeId}
+    </select>
+
+    <select id="selectFollowingList" resultMap="FriendshipResultMap">
+        SELECT * FROM friendship_info
+        WHERE follower_id = #{followerId}
+        ORDER BY create_time DESC
+        LIMIT #{page}, #{pageSize}
+    </select>
+
+    <select id="selectFollowerList" resultMap="FriendshipResultMap">
+        SELECT * FROM friendship_info
+        WHERE followee_id = #{followeeId}
+        ORDER BY create_time DESC
+        LIMIT #{page}, #{pageSize}
+    </select>
+
+    <select id="selectFollowingCount" resultType="Integer">
+        SELECT COUNT(*) FROM friendship_info
+        WHERE follower_id = #{followerId}
+    </select>
+
+    <select id="selectFollowerCount" resultType="Integer">
+        SELECT COUNT(*) FROM friendship_info
+        WHERE followee_id = #{followeeId}
+    </select>
+
+</mapper>
+

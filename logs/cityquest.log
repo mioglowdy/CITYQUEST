@@ -1,0 +1,164 @@
+2025-11-13 19:01:33.133  INFO 4736 --- [main] com.cityquest.CityQuestApplication       : Starting CityQuestApplication using Java 17.0.14 on mioglow with PID 4736 (D:\aiProject\CityQuest\backend\target\classes started by Administrator in D:\aiProject\CityQuest\backend)
+2025-11-13 19:01:33.137 DEBUG 4736 --- [main] com.cityquest.CityQuestApplication       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2025-11-13 19:01:33.137  INFO 4736 --- [main] com.cityquest.CityQuestApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-13 19:01:33.713  INFO 4736 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-13 19:01:33.716  INFO 4736 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-13 19:01:33.747  INFO 4736 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2025-11-13 19:01:34.317  INFO 4736 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-11-13 19:01:34.330  INFO 4736 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-13 19:01:34.330  INFO 4736 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2025-11-13 19:01:34.444  INFO 4736 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-11-13 19:01:34.444  INFO 4736 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1257 ms
+2025-11-13 19:01:35.588  INFO 4736 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-11-13 19:01:35.598  INFO 4736 --- [main] com.cityquest.CityQuestApplication       : Started CityQuestApplication in 2.876 seconds (JVM running for 3.471)
+2025-11-13 19:01:43.010  INFO 4736 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-13 19:01:43.010  INFO 4736 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-13 19:01:43.011  INFO 4736 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-13 19:01:52.504  INFO 4736 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-13 19:01:52.873  INFO 4736 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-13 19:01:54.969  INFO 4736 --- [lettuce-eventExecutorLoop-1-2] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was localhost/127.0.0.1:6379
+2025-11-13 19:01:54.975  WARN 4736 --- [lettuce-nioEventLoop-4-2] i.l.core.protocol.ConnectionWatchdog     : Cannot reconnect to [localhost/<unresolved>:6379]: Connection refused: no further information: localhost/127.0.0.1:6379
+2025-11-13 19:02:04.070  INFO 4736 --- [lettuce-eventExecutorLoop-1-14] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was localhost/<unresolved>:6379
+2025-11-13 19:02:04.073  WARN 4736 --- [lettuce-nioEventLoop-4-14] i.l.core.protocol.ConnectionWatchdog     : Cannot reconnect to [localhost/<unresolved>:6379]: Connection refused: no further information: localhost/127.0.0.1:6379
+2025-11-13 19:02:12.360  INFO 4736 --- [lettuce-eventExecutorLoop-1-15] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was localhost/<unresolved>:6379
+2025-11-13 19:02:12.364  INFO 4736 --- [lettuce-nioEventLoop-4-15] i.l.core.protocol.ReconnectionHandler    : Reconnected to localhost/<unresolved>:6379
+2025-11-13 19:17:45.631  INFO 4736 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-13 19:17:45.638  INFO 4736 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-13 19:17:47.609  INFO 14060 --- [main] com.cityquest.CityQuestApplication       : Starting CityQuestApplication using Java 17.0.14 on mioglow with PID 14060 (D:\aiProject\CityQuest\backend\target\classes started by Administrator in D:\aiProject\CityQuest\backend)
+2025-11-13 19:17:47.611 DEBUG 14060 --- [main] com.cityquest.CityQuestApplication       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2025-11-13 19:17:47.612  INFO 14060 --- [main] com.cityquest.CityQuestApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-13 19:17:48.133  INFO 14060 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-13 19:17:48.135  INFO 14060 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-13 19:17:48.159  INFO 14060 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2025-11-13 19:17:48.682  INFO 14060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-11-13 19:17:48.693  INFO 14060 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-13 19:17:48.693  INFO 14060 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2025-11-13 19:17:48.781  INFO 14060 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-11-13 19:17:48.782  INFO 14060 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1114 ms
+2025-11-13 19:17:49.731  INFO 14060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-11-13 19:17:49.739  INFO 14060 --- [main] com.cityquest.CityQuestApplication       : Started CityQuestApplication in 2.533 seconds (JVM running for 3.133)
+2025-11-13 19:17:53.375  INFO 14060 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-13 19:17:53.375  INFO 14060 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-13 19:17:53.377  INFO 14060 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-11-13 19:17:53.900  INFO 14060 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-13 19:17:54.163  INFO 14060 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-13 19:29:39.386  INFO 14060 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-13 19:29:39.396  INFO 14060 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-13 19:29:43.118  INFO 12712 --- [main] com.cityquest.CityQuestApplication       : Starting CityQuestApplication using Java 17.0.14 on mioglow with PID 12712 (D:\aiProject\CityQuest\backend\target\classes started by Administrator in D:\aiProject\CityQuest\backend)
+2025-11-13 19:29:43.120 DEBUG 12712 --- [main] com.cityquest.CityQuestApplication       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2025-11-13 19:29:43.121  INFO 12712 --- [main] com.cityquest.CityQuestApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-13 19:29:43.783  INFO 12712 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-13 19:29:43.788  INFO 12712 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-13 19:29:43.828  INFO 12712 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
+2025-11-13 19:29:44.541  INFO 12712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-11-13 19:29:44.551  INFO 12712 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-13 19:29:44.552  INFO 12712 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2025-11-13 19:29:44.658  INFO 12712 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-11-13 19:29:44.659  INFO 12712 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1483 ms
+2025-11-13 19:29:46.000  INFO 12712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-11-13 19:29:46.012  INFO 12712 --- [main] com.cityquest.CityQuestApplication       : Started CityQuestApplication in 3.362 seconds (JVM running for 4.066)
+2025-11-13 19:29:50.442  INFO 12712 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-13 19:29:50.443  INFO 12712 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-13 19:29:50.445  INFO 12712 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-11-13 19:29:51.000  INFO 12712 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-13 19:29:51.296  INFO 12712 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-13 19:36:58.115  INFO 12712 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-13 19:36:58.122  INFO 12712 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-13 20:14:57.007  INFO 24328 --- [main] com.cityquest.CityQuestApplication       : Starting CityQuestApplication using Java 17.0.14 on mioglow with PID 24328 (D:\aiProject\CityQuest\backend\target\classes started by Administrator in D:\aiProject\CityQuest\backend)
+2025-11-13 20:14:57.009 DEBUG 24328 --- [main] com.cityquest.CityQuestApplication       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2025-11-13 20:14:57.009  INFO 24328 --- [main] com.cityquest.CityQuestApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-13 20:14:57.532  INFO 24328 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-13 20:14:57.534  INFO 24328 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-13 20:14:57.558  INFO 24328 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2025-11-13 20:14:58.058  INFO 24328 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-11-13 20:14:58.065  INFO 24328 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-13 20:14:58.066  INFO 24328 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2025-11-13 20:14:58.159  INFO 24328 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-11-13 20:14:58.159  INFO 24328 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1108 ms
+2025-11-13 20:14:59.152  INFO 24328 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-11-13 20:14:59.161  INFO 24328 --- [main] com.cityquest.CityQuestApplication       : Started CityQuestApplication in 2.511 seconds (JVM running for 3.067)
+2025-11-13 20:15:32.723  INFO 24328 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-13 20:15:32.723  INFO 24328 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-13 20:15:32.724  INFO 24328 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-13 20:15:37.078  INFO 24328 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-13 20:15:37.344  INFO 24328 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-13 20:19:25.257  INFO 24328 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-13 20:19:25.263  INFO 24328 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-13 20:19:27.495  INFO 22572 --- [main] com.cityquest.CityQuestApplication       : Starting CityQuestApplication using Java 17.0.14 on mioglow with PID 22572 (D:\aiProject\CityQuest\backend\target\classes started by Administrator in D:\aiProject\CityQuest\backend)
+2025-11-13 20:19:27.497 DEBUG 22572 --- [main] com.cityquest.CityQuestApplication       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2025-11-13 20:19:27.498  INFO 22572 --- [main] com.cityquest.CityQuestApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-13 20:19:28.003  INFO 22572 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-13 20:19:28.005  INFO 22572 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-13 20:19:28.029  INFO 22572 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2025-11-13 20:19:28.520  INFO 22572 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-11-13 20:19:28.527  INFO 22572 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-13 20:19:28.528  INFO 22572 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2025-11-13 20:19:28.616  INFO 22572 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-11-13 20:19:28.616  INFO 22572 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1072 ms
+2025-11-13 20:19:29.545  INFO 22572 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-11-13 20:19:29.553  INFO 22572 --- [main] com.cityquest.CityQuestApplication       : Started CityQuestApplication in 2.563 seconds (JVM running for 3.238)
+2025-11-13 20:19:32.216  INFO 22572 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-13 20:19:32.216  INFO 22572 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-13 20:19:32.217  INFO 22572 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-13 20:19:32.604  INFO 22572 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-13 20:19:32.819  INFO 22572 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-13 20:21:45.385  INFO 22572 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-13 20:21:45.392  INFO 22572 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-13 20:21:47.503  INFO 24000 --- [main] com.cityquest.CityQuestApplication       : Starting CityQuestApplication using Java 17.0.14 on mioglow with PID 24000 (D:\aiProject\CityQuest\backend\target\classes started by Administrator in D:\aiProject\CityQuest\backend)
+2025-11-13 20:21:47.506 DEBUG 24000 --- [main] com.cityquest.CityQuestApplication       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2025-11-13 20:21:47.507  INFO 24000 --- [main] com.cityquest.CityQuestApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-13 20:21:48.015  INFO 24000 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-13 20:21:48.017  INFO 24000 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-13 20:21:48.042  INFO 24000 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2025-11-13 20:21:48.551  INFO 24000 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-11-13 20:21:48.558  INFO 24000 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-13 20:21:48.559  INFO 24000 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2025-11-13 20:21:48.648  INFO 24000 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-11-13 20:21:48.648  INFO 24000 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1095 ms
+2025-11-13 20:21:49.600  INFO 24000 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-11-13 20:21:49.608  INFO 24000 --- [main] com.cityquest.CityQuestApplication       : Started CityQuestApplication in 2.475 seconds (JVM running for 3.033)
+2025-11-13 20:21:54.224  INFO 24000 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-13 20:21:54.224  INFO 24000 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-13 20:21:54.225  INFO 24000 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-11-13 20:21:54.646  INFO 24000 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-13 20:21:54.906  INFO 24000 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-13 20:29:23.622  INFO 24000 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-13 20:29:23.627  INFO 24000 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-13 20:29:27.521  INFO 15260 --- [main] com.cityquest.CityQuestApplication       : Starting CityQuestApplication using Java 17.0.14 on mioglow with PID 15260 (D:\aiProject\CityQuest\backend\target\classes started by Administrator in D:\aiProject\CityQuest\backend)
+2025-11-13 20:29:27.523 DEBUG 15260 --- [main] com.cityquest.CityQuestApplication       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2025-11-13 20:29:27.523  INFO 15260 --- [main] com.cityquest.CityQuestApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-13 20:29:28.012  INFO 15260 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-13 20:29:28.014  INFO 15260 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-13 20:29:28.037  INFO 15260 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2025-11-13 20:29:28.516  INFO 15260 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-11-13 20:29:28.523  INFO 15260 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-13 20:29:28.523  INFO 15260 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2025-11-13 20:29:28.615  INFO 15260 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-11-13 20:29:28.615  INFO 15260 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1052 ms
+2025-11-13 20:29:29.591  INFO 15260 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-11-13 20:29:29.600  INFO 15260 --- [main] com.cityquest.CityQuestApplication       : Started CityQuestApplication in 2.453 seconds (JVM running for 2.987)
+2025-11-13 20:29:32.749  INFO 15260 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-13 20:29:32.750  INFO 15260 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-13 20:29:32.751  INFO 15260 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-13 20:29:33.162  INFO 15260 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-13 20:29:33.378  INFO 15260 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-13 20:53:41.007  INFO 15260 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-13 20:53:41.013  INFO 15260 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-13 20:53:45.820  INFO 19520 --- [main] com.cityquest.CityQuestApplication       : Starting CityQuestApplication using Java 17.0.14 on mioglow with PID 19520 (D:\aiProject\CityQuest\backend\target\classes started by Administrator in D:\aiProject\CityQuest\backend)
+2025-11-13 20:53:45.822 DEBUG 19520 --- [main] com.cityquest.CityQuestApplication       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2025-11-13 20:53:45.823  INFO 19520 --- [main] com.cityquest.CityQuestApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-13 20:53:46.347  INFO 19520 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-13 20:53:46.349  INFO 19520 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-13 20:53:46.371  INFO 19520 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2025-11-13 20:53:46.855  INFO 19520 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-11-13 20:53:46.863  INFO 19520 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-13 20:53:46.864  INFO 19520 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2025-11-13 20:53:46.960  INFO 19520 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-11-13 20:53:46.960  INFO 19520 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1094 ms
+2025-11-13 20:53:47.925  INFO 19520 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-11-13 20:53:47.934  INFO 19520 --- [main] com.cityquest.CityQuestApplication       : Started CityQuestApplication in 2.497 seconds (JVM running for 3.068)
+2025-11-13 20:53:50.048  INFO 19520 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-13 20:53:50.049  INFO 19520 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-13 20:53:50.050  INFO 19520 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-13 20:53:50.478  INFO 19520 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-13 20:53:50.703  INFO 19520 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.

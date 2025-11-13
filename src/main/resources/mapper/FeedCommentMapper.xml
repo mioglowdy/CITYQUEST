@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityquest.mapper.FeedCommentMapper">
+
+    <resultMap id="FeedCommentResultMap" type="com.cityquest.entity.FeedCommentInfo">
+        <id column="id" property="id"/>
+        <result column="feed_id" property="feedId"/>
+        <result column="user_id" property="userId"/>
+        <result column="content" property="content"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.cityquest.entity.FeedCommentInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO feed_comment_info (feed_id, user_id, content, parent_id, create_time)
+        VALUES (#{feedId}, #{userId}, #{content}, #{parentId}, NOW())
+    </insert>
+
+    <select id="selectById" parameterType="Integer" resultMap="FeedCommentResultMap">
+        SELECT * FROM feed_comment_info WHERE id = #{id}
+    </select>
+
+    <select id="selectByFeedId" resultMap="FeedCommentResultMap">
+        SELECT * FROM feed_comment_info
+        WHERE feed_id = #{feedId}
+        ORDER BY create_time ASC
+        LIMIT #{page}, #{pageSize}
+    </select>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM feed_comment_info WHERE id = #{id}
+    </delete>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*) FROM feed_comment_info
+        WHERE feed_id = #{feedId}
+    </select>
+
+    <delete id="deleteByFeedId">
+        DELETE FROM feed_comment_info
+        WHERE feed_id = #{feedId}
+    </delete>
+
+</mapper>
+

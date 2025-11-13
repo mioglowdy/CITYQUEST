@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityquest.mapper.ExchangeOrderMapper">
+    
+    <resultMap id="OrderResultMap" type="com.cityquest.entity.ExchangeOrder">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="total_points" property="totalPoints"/>
+        <result column="status" property="status"/>
+        <result column="receiver_name" property="receiverName"/>
+        <result column="receiver_phone" property="receiverPhone"/>
+        <result column="receiver_address" property="receiverAddress"/>
+        <result column="logistics_info" property="logisticsInfo"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="user_nickname" property="userNickname"/>
+    </resultMap>
+    
+    <select id="selectById" parameterType="Long" resultMap="OrderResultMap">
+        SELECT eo.*, u.nickname AS user_nickname
+        FROM exchange_order eo
+        LEFT JOIN user_info u ON eo.user_id = u.id
+        WHERE eo.id = #{id}
+    </select>
+    
+    <select id="selectByOrderNo" parameterType="String" resultMap="OrderResultMap">
+        SELECT eo.*, u.nickname AS user_nickname
+        FROM exchange_order eo
+        LEFT JOIN user_info u ON eo.user_id = u.id
+        WHERE eo.order_no = #{orderNo}
+    </select>
+    
+    <select id="selectList" resultMap="OrderResultMap">
+        SELECT eo.*, u.nickname AS user_nickname
+        FROM exchange_order eo
+        LEFT JOIN user_info u ON eo.user_id = u.id
+        <where>
+            <if test="userId != null">AND eo.user_id = #{userId}</if>
+            <if test="status != null">AND eo.status = #{status}</if>
+            <if test="keyword != null and keyword != ''">
+                AND (eo.order_no LIKE CONCAT('%', #{keyword}, '%')
+                     OR u.nickname LIKE CONCAT('%', #{keyword}, '%')
+                     OR eo.receiver_name LIKE CONCAT('%', #{keyword}, '%')
+                     OR eo.receiver_phone LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+        </where>
+        ORDER BY eo.create_time DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+    
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM exchange_order eo
+        LEFT JOIN user_info u ON eo.user_id = u.id
+        <where>
+            <if test="userId != null">AND eo.user_id = #{userId}</if>
+            <if test="status != null">AND eo.status = #{status}</if>
+            <if test="keyword != null and keyword != ''">
+                AND (eo.order_no LIKE CONCAT('%', #{keyword}, '%')
+                     OR u.nickname LIKE CONCAT('%', #{keyword}, '%')
+                     OR eo.receiver_name LIKE CONCAT('%', #{keyword}, '%')
+                     OR eo.receiver_phone LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+        </where>
+    </select>
+    
+    <insert id="insert" parameterType="com.cityquest.entity.ExchangeOrder" useGeneratedKeys="false">
+        INSERT INTO exchange_order (id, user_id, order_no, total_points, status, receiver_name, receiver_phone, receiver_address, logistics_info, remark, create_time, update_time)
+        VALUES (#{id}, #{userId}, #{orderNo}, #{totalPoints}, #{status}, #{receiverName}, #{receiverPhone}, #{receiverAddress}, #{logisticsInfo}, #{remark}, #{createTime}, #{updateTime})
+    </insert>
+    
+    <update id="update" parameterType="com.cityquest.entity.ExchangeOrder">
+        UPDATE exchange_order
+        <set>
+            <if test="status != null">status = #{status},</if>
+            <if test="receiverName != null">receiver_name = #{receiverName},</if>
+            <if test="receiverPhone != null">receiver_phone = #{receiverPhone},</if>
+            <if test="receiverAddress != null">receiver_address = #{receiverAddress},</if>
+            <if test="logisticsInfo != null">logistics_info = #{logisticsInfo},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            update_time = #{updateTime}
+        </set>
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="Long">
+        DELETE FROM exchange_order WHERE id = #{id}
+    </delete>
+</mapper>
+

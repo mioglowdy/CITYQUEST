@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityquest.mapper.FeedLikeMapper">
+
+    <resultMap id="FeedLikeResultMap" type="com.cityquest.entity.FeedLikeInfo">
+        <id column="id" property="id"/>
+        <result column="feed_id" property="feedId"/>
+        <result column="user_id" property="userId"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.cityquest.entity.FeedLikeInfo">
+        INSERT INTO feed_like_info (feed_id, user_id, create_time)
+        VALUES (#{feedId}, #{userId}, NOW())
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM feed_like_info
+        WHERE feed_id = #{feedId} AND user_id = #{userId}
+    </delete>
+
+    <select id="checkLike" resultType="Integer">
+        SELECT COUNT(*) FROM feed_like_info
+        WHERE feed_id = #{feedId} AND user_id = #{userId}
+    </select>
+
+    <delete id="deleteByFeedId">
+        DELETE FROM feed_like_info
+        WHERE feed_id = #{feedId}
+    </delete>
+
+</mapper>
+
